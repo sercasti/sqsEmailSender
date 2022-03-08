@@ -1,18 +1,18 @@
 import logging
 
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 def consumer(event, context):
     for record in event['Records']:
         logger.info(f'Message body: {record["body"]}')
         logger.info(
-            f'Message attribute: {record["messageAttributes"]["AttributeName"]["stringValue"]}'
+            f'Message attribute: {record["messageAttributes"]["emailId"]["stringValue"]}'
         )
 
-        userEmails = record["body"]
+        userEmails = record["body"].split(",")
         message = "testeando os testes"
-        emailId = record["messageAttributes"]["AttributeName"]["stringValue"]
+        emailId = record["messageAttributes"]["emailId"]["stringValue"]
         
         for userEmailAddress in (userEmails):
           ##hubspotClient.marketing.transactional.singleSendApi.sendEmail(...)
