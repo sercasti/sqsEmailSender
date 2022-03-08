@@ -12,7 +12,7 @@ SQS_CLIENT = boto3.client('sqs')
 QUEUE_URL = os.getenv('SQS_URL')
 
 def btwob(idList: str, idOffset:int):
-  return contacts[idOffset:500]
+  return contacts[idOffset::500]
 
 def producer(event, context):
   currentOffset = 0
